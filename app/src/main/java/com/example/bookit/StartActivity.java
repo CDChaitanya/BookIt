@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -13,6 +14,7 @@ public class StartActivity extends AppCompatActivity
 {
     private Button register;
     private Button login;
+    private long pressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,5 +55,20 @@ public class StartActivity extends AppCompatActivity
             startActivity(new Intent(StartActivity.this , MainActivity.class));
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(pressedTime+2000 > System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "Press Back Again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
     }
 }

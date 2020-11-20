@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private Spinner select_bus;
     private EditText select_date;
     private Button search_buses;
+    private ImageView prof;
 
     ArrayList<String> bus_spinner;
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity
         select_bus = findViewById(R.id.select_bus);
         select_date = findViewById(R.id.select_date);
         search_buses = findViewById(R.id.search_buses);
+        prof = findViewById(R.id.prof);
 
         //select_bus.setOnItemClickListener(this);
 
@@ -147,6 +150,17 @@ public class MainActivity extends AppCompatActivity
                 {
                     startActivity(intent);
                 }
+            }
+        });
+
+        prof.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent profile_intent = new Intent(MainActivity.this , ProfActivity.class);
+                profile_intent.putExtra("email" , currentUser.getEmail());
+                startActivity(profile_intent);
             }
         });
 

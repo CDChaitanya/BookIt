@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ProfActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -28,23 +28,20 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:scaleType="fitXY"
-                    android:id="@+id/prof"
-                    android:src="@drawable/ic_person_outline_white_24dp" />
+                    android:src="@drawable/ic_arrow_back_white_24dp"
+                    android:id="@+id/back_btn"/>
 
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -63,32 +60,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="260dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bus_image_1" />
+                        android:src="@drawable/bus_image_3" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_person_outline_white_24dp"
+                        android:id="@+id/prof_logo"/>
 
                     <TextView
-                        android:id="@+id/heytv"
+                        android:id="@+id/fullname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/print_clearly"
-                        android:text="Hey ...!!"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="32sp" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/heytv"
-                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/gotham"
-                        android:text="Where you want to go."
+                        android:text="____________"
+                        android:layout_below="@+id/prof_logo"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="27sp" />
+
 
                 </RelativeLayout>
 
@@ -109,71 +101,69 @@
                         android:layout_marginBottom="16dp"
                         android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <Button
+                            android:id="@+id/my_tickets"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:textColorHint="#FF8A99AF">
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:background="@drawable/buttonshape"
+                            android:fontFamily="@font/calibri"
+                            android:text="My Tickets"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textSize="18sp" />
 
-                            <Spinner
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/select_bus"/>
-
-                            <!--android:drawablePadding="16dp"
-                                android:drawableStart="@drawable/ic_location_on_light_blue_24dp"
-                                android:fontFamily="@font/calibri"
-                                android:hint="Select Bus"
-                                android:inputType="text"
-                                android:maxLines="1"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"-->
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
+                        <Button
+                            android:id="@+id/editprof"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:textColorHint="#FF8A99AF">
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:background="@drawable/buttonshape"
+                            android:fontFamily="@font/calibri"
+                            android:text="Edit Profile"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textSize="18sp" />
 
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="16dp"
-                                android:drawableStart="@drawable/ic_date_range_light_blue_24dp"
-                                android:fontFamily="@font/calibri"
-                                android:hint="Select Date (dd-mm-yyyy)"
-                                android:inputType="date"
-                                android:maxLines="1"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"
-                                android:id="@+id/select_date"/>
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <Button
+                            android:id="@+id/log_out"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:background="@drawable/buttonshape"
+                            android:fontFamily="@font/calibri"
+                            android:text="Log Out"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:textSize="18sp" />
+
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-
-                <Button
-                    android:id="@+id/search_buses"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/buttonshape"
-                    android:fontFamily="@font/calibri"
-                    android:text="Search Buses"
+                    android:text="BookIt"
+                    android:id="@+id/main_page_heading"
+                    android:fontFamily="@font/gotham"
+                    android:gravity="center"
+                    android:layout_marginTop="50dp"
                     android:textAllCaps="false"
                     android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp"/>
 
+            </LinearLayout>
 
         </ScrollView>
 
     </RelativeLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
