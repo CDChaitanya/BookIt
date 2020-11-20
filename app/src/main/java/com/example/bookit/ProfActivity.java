@@ -60,7 +60,7 @@ public class ProfActivity extends AppCompatActivity
             {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(ProfActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProfActivity.this , StartActivity.class));
+                startActivity(new Intent(ProfActivity.this , StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
             }
         });

@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         select_bus.setAdapter(adapter);
 
-        Intent intent=new Intent(MainActivity.this , ProfActivity.class);
+        Intent intent=new Intent(MainActivity.this , MainActivity2.class);
 
         select_bus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 String txt_date = select_date.getText().toString();
+                intent.putExtra("date",txt_date);
                 System.out.println(intent.getStringExtra("bus") +"   ##################1");
                 System.out.println(txt_date+"   ##################3");
                 if(  TextUtils.isEmpty(intent.getStringExtra("bus"))  &&  TextUtils.isEmpty(txt_date) )
