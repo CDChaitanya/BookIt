@@ -22,6 +22,7 @@ public class ProfActivity extends AppCompatActivity
     private TextView fullname;
     private Button logout;
     private Button editprof;
+    private Button my_tickets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +33,7 @@ public class ProfActivity extends AppCompatActivity
         fullname = findViewById(R.id.fullname);
         logout =findViewById(R.id.log_out);
         editprof = findViewById(R.id.editprof);
+        my_tickets = findViewById(R.id.my_tickets);
 
         Intent intent = getIntent();
         String s = intent.getStringExtra("email");
@@ -53,11 +55,9 @@ public class ProfActivity extends AppCompatActivity
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener()
-        {
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(ProfActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(ProfActivity.this , StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK));
@@ -65,12 +65,19 @@ public class ProfActivity extends AppCompatActivity
             }
         });
 
-        editprof.setOnClickListener(new View.OnClickListener()
-        {
+        editprof.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(new Intent(ProfActivity.this , EditActivity.class));
+            }
+        });
+
+        my_tickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent xx = new Intent(ProfActivity.this , TicketActivity.class);
+                xx.putExtra("email",s);
+                startActivity(xx);
             }
         });
     }

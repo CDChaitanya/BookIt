@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,7 +24,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private ListView lv;
     private TextView source;
-   // private TextView destination;
+    private TextView destination;
     private TextView date;
     private ImageView arrow;
 
@@ -32,14 +33,17 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        lv = findViewById(R.id.firestore_list);
+        lv = findViewById(R.id.lv);
         source = findViewById(R.id.source);
-        //destination = findViewById(R.id.destination);
+        destination = findViewById(R.id.destination);
         date = findViewById(R.id.date);
         arrow = findViewById(R.id.back_arrow);
-        String txt_source = getIntent().getStringExtra("bus");
+
+        String txt_bus = getIntent().getStringExtra("bus");
         String txt_date = getIntent().getStringExtra("date");
-        source.setText(txt_source);
+        String[] s = txt_bus.split("To");
+        source.setText(s[0]);
+        destination.setText(s[1]);
         date.setText(txt_date);
 
         arrow.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,17 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent selectSeatIntent = new Intent(MainActivity2.this , MainActivity3.class);
+                selectSeatIntent.putExtra("time", list.get(position));
+                selectSeatIntent.putExtra("busName", txt_bus);
+                selectSeatIntent.putExtra("date", txt_date);
+                startActivity(selectSeatIntent);
+            }
+        });
     }
 }

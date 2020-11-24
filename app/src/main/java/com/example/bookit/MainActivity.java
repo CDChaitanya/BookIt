@@ -1,15 +1,20 @@
 package com.example.bookit;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -25,12 +30,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
 {
     private TextView heytv;
     private Spinner select_bus;
-    private EditText select_date;
+    private TextView select_date;
     private Button search_buses;
     private ImageView prof;
 
@@ -48,8 +54,6 @@ public class MainActivity extends AppCompatActivity
         select_date = findViewById(R.id.select_date);
         search_buses = findViewById(R.id.search_buses);
         prof = findViewById(R.id.prof);
-
-        //select_bus.setOnItemClickListener(this);
 
         /*FirebaseFirestore db = FirebaseFirestore.getInstance();
         HashMap<String, Object> map = new HashMap<>();
@@ -130,26 +134,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        search_buses.setOnClickListener(new View.OnClickListener()
-        {
+        final String[] txt = new String[1];
+        select_date.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                String txt_date = select_date.getText().toString();
-                intent.putExtra("date",txt_date);
-                System.out.println(intent.getStringExtra("bus") +"   ##################1");
-                System.out.println(txt_date+"   ##################3");
-                if(  TextUtils.isEmpty(intent.getStringExtra("bus"))  &&  TextUtils.isEmpty(txt_date) )
-                    Toast.makeText(MainActivity.this, "Please Select Bus & Date", Toast.LENGTH_SHORT).show();
-                else if(TextUtils.isEmpty(txt_date))
-                    Toast.makeText(MainActivity.this, "Please Select Date", Toast.LENGTH_SHORT).show();
-                else if(TextUtils.isEmpty(intent.getStringExtra("bus")))
-                    Toast.makeText(MainActivity.this, "Please Select Bus", Toast.LENGTH_SHORT).show();
-                else
-                {
-                    startActivity(intent);
-                }
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txt[0] = dayOfMonth+"-"+month+"-"+year;
+                        select_date.setText(txt[0]);
+                    }
+                },year,month,day);
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis() +604800000);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
+
+
             }
         });
 
@@ -161,6 +166,27 @@ public class MainActivity extends AppCompatActivity
                 Intent profile_intent = new Intent(MainActivity.this , ProfActivity.class);
                 profile_intent.putExtra("email" , currentUser.getEmail());
                 startActivity(profile_intent);
+            }
+        });
+
+        search_buses.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent.putExtra("date", txt[0]);
+                System.out.println(intent.getStringExtra("bus") +"   ##################1");
+                System.out.println(txt[0]+"   ##################3");
+                if(  TextUtils.isEmpty(intent.getStringExtra("bus"))  &&  TextUtils.isEmpty(txt[0]) )
+                    Toast.makeText(MainActivity.this, "Please Select Bus & Date", Toast.LENGTH_SHORT).show();
+                else if(TextUtils.isEmpty(txt[0]))
+                    Toast.makeText(MainActivity.this, "Please Select Date", Toast.LENGTH_SHORT).show();
+                else if(TextUtils.isEmpty(intent.getStringExtra("bus")))
+                    Toast.makeText(MainActivity.this, "Please Select Bus", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    startActivity(intent);
+                }
             }
         });
 

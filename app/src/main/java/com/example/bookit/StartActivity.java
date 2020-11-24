@@ -60,15 +60,9 @@ public class StartActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        if(pressedTime+2000 > System.currentTimeMillis())
-        {
-            super.onBackPressed();
-            finish();
-        }
-        else
-        {
-            Toast.makeText(this, "Press Back Again to exit", Toast.LENGTH_SHORT).show();
-        }
-        pressedTime = System.currentTimeMillis();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }
