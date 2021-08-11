@@ -41,6 +41,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         String txt_bus = getIntent().getStringExtra("bus");
         String txt_date = getIntent().getStringExtra("date");
+        String txt_cost = getIntent().getStringExtra("cost");
         String[] s = txt_bus.split("To");
         source.setText(s[0]);
         destination.setText(s[1]);
@@ -85,6 +86,7 @@ public class MainActivity2 extends AppCompatActivity {
                 selectSeatIntent.putExtra("time", list.get(position));
                 selectSeatIntent.putExtra("busName", txt_bus);
                 selectSeatIntent.putExtra("date", txt_date);
+                selectSeatIntent.putExtra("cost", txt_cost);
                 startActivity(selectSeatIntent);
             }
         });

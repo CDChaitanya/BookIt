@@ -1,5 +1,6 @@
 package com.example.bookit;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -125,6 +129,20 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("bus" , bus_spinner.get(position));
                 //setDestSpinnerList(bus_no.getSelectedItem()final String[] txt_bus = {new String()};.toString());
                 //dest.setEnabled(true);
+                DocumentReference ref = db.collection("Buses").document(bus_spinner.get(position));
+                ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists())
+                            {
+                                String a =  document.get("cost").toString();
+                                intent.putExtra("cost",a);
+                            }
+                        }
+                    }
+                });
             }
 
             @Override
@@ -146,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        txt[0] = dayOfMonth+"-"+month+"-"+year;
+                        txt[0] = dayOfMonth+"-"+(month+1)+"-"+year;
                         select_date.setText(txt[0]);
                     }
                 },year,month,day);

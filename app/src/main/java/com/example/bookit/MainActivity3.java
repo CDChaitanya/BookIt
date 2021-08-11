@@ -3,8 +3,10 @@ package com.example.bookit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 import java.util.Vector;
 
 public class MainActivity3 extends AppCompatActivity
@@ -31,6 +34,7 @@ public class MainActivity3 extends AppCompatActivity
     private TextView date;
     private TextView time;
     private Button book_btn;
+    private TextView cost;
     Vector<ImageView> xx = new Vector<>();
 
     private ImageView a1;private ImageView b1;private ImageView c1;private ImageView d1;
@@ -75,17 +79,20 @@ public class MainActivity3 extends AppCompatActivity
         source = findViewById(R.id.source);
         destination = findViewById(R.id.destination);
         book_btn = findViewById(R.id.book_btn);
+        cost = findViewById(R.id.cost);
 
         Intent intent = getIntent();
         String txt_time = intent.getStringExtra("time");
         String txt_date = intent.getStringExtra("date");
         String txt_bus = intent.getStringExtra("busName");
+        String txt_cost = intent.getStringExtra("cost");
 
         date.setText(txt_date);
         time.setText(txt_time);
         String[] strs = txt_bus.split("To");
         source.setText(strs[0]);
         destination.setText(strs[1]);
+        cost.setText("Rs. "+txt_cost);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference ref = db.collection(txt_bus).document(txt_date+txt_time);
@@ -346,6 +353,10 @@ public class MainActivity3 extends AppCompatActivity
         book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog pd = new ProgressDialog(MainActivity3.this);
+                pd.setMessage("Booking");
+                pd.show();
+
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 DocumentReference ref = db.collection(txt_bus).document(txt_date+txt_time);
                 ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -396,6 +407,8 @@ public class MainActivity3 extends AppCompatActivity
                         }
                     }
                 });
+                //SystemClock.sleep(10000);
+                pd.dismiss();
                 Toast.makeText(MainActivity3.this, "Ticket Booked", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity3.this , MainActivity.class));
                 finish();

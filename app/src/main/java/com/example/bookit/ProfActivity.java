@@ -23,6 +23,7 @@ public class ProfActivity extends AppCompatActivity
     private Button logout;
     private Button editprof;
     private Button my_tickets;
+    private Button aboutus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +35,7 @@ public class ProfActivity extends AppCompatActivity
         logout =findViewById(R.id.log_out);
         editprof = findViewById(R.id.editprof);
         my_tickets = findViewById(R.id.my_tickets);
+        aboutus = findViewById(R.id.aboutus);
 
         Intent intent = getIntent();
         String s = intent.getStringExtra("email");
@@ -78,6 +80,13 @@ public class ProfActivity extends AppCompatActivity
                 Intent xx = new Intent(ProfActivity.this , TicketActivity.class);
                 xx.putExtra("email",s);
                 startActivity(xx);
+            }
+        });
+
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfActivity.this , AboutActivity.class));
             }
         });
     }
