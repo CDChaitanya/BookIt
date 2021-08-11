@@ -36,9 +36,9 @@ system can book a ticket at desired time</p>
 
 ##      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Main Activity 1 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  Main Activity 2 
 <div>
-<img src="Screenshots/MainActivity1.png" height="600" width="300">
-<img src="Screenshots/MainActivity11.png" height="600" width="300">
-<img src="Screenshots/RegisterActivity.png" height="600" width="300">
+<img src="Screenshots/MainActivity1.png" height="600" >
+<img src="Screenshots/MainActivity11.png" height="600" >
+<img src="Screenshots/RegisterActivity.png" height="600" >
 </div>
 
 ##      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Main Activity 3  
@@ -49,9 +49,9 @@ system can book a ticket at desired time</p>
 
 ##      &emsp;&emsp;&emsp; Profile Activity  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  Ticket Activity  &emsp;&emsp;&emsp;&emsp;&emsp;  Edit Activity
 <div>
-<img src="Screenshots/ProfileActivity.png" height="600" width="300">
-<img src="Screenshots/TicketActivity.png" height="600" width="300">
-<img src="Screenshots/EditActivity.png" height="600" width="300">
+<img src="Screenshots/ProfileActivity.png" height="600" >
+<img src="Screenshots/TicketActivity.png" height="600" >
+<img src="Screenshots/EditActivity.png" height="600" >
 </div>
 
 ##      &emsp;&emsp;&emsp; About Activity  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  Logout Activity
