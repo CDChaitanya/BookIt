@@ -38,7 +38,7 @@ system can book a ticket at desired time</p>
 <div>
 <img src="Screenshots/MainActivity1.png" height="600">
 <img src="Screenshots/MainActivity11.png" height="600">
-<img src="Screenshots/RegisterActivity.png" height="600">
+<img src="Screenshots/MainActivity2.png" height="600">
 </div>
 
 ###      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Main Activity 3  
